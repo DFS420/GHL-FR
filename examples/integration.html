@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHL-FR - Exemple d'intégration jsDelivr</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .code-block {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        .version-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🇫🇷 GHL-FR - Intégration jsDelivr</h1>
+    
+    <h2>📦 Installation rapide</h2>
+    <p>Ajoutez simplement cette ligne dans votre page ou extension :</p>
+    
+    <div class="code-block">
+        <strong>Version stable (recommandée) :</strong><br>
+        <code>&lt;script src="https://cdn.jsdelivr.net/gh/<span class="highlight">[USERNAME]</span>/GHL-FR@<span class="highlight">v1.0.0</span>/src/translator.js">&lt;/script></code>
+    </div>
+
+    <div class="code-block">
+        <strong>Version toujours à jour :</strong><br>
+        <code>&lt;script src="https://cdn.jsdelivr.net/gh/<span class="highlight">[USERNAME]</span>/GHL-FR@latest/src/translator.js">&lt;/script></code>
+    </div>
+
+    <div class="version-info">
+        <strong>💡 Note :</strong> Remplacez <code>[USERNAME]</code> par votre nom d'utilisateur GitHub.
+    </div>
+
+    <h2>🔧 Options d'utilisation</h2>
+
+    <h3>1. Script direct (plus simple)</h3>
+    <div class="code-block">
+        <pre>&lt;!-- Dans votre extension ou userscript --&gt;
+&lt;script src="https://cdn.jsdelivr.net/gh/[USERNAME]/GHL-FR@latest/src/translator.js"&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <h3>2. Chargement conditionnel</h3>
+    <div class="code-block">
+        <pre>&lt;script&gt;
+// Charger seulement si on est sur GoHighLevel
+if (location.hostname.includes('app.gohighlevel.com')) {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/[USERNAME]/GHL-FR@latest/src/translator.js';
+    document.head.appendChild(script);
+}
+&lt;/script&gt;</pre>
+    </div>
+
+    <h3>3. Avec gestion d'erreur</h3>
+    <div class="code-block">
+        <pre>&lt;script&gt;
+const loadGHL_FR = () => {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/gh/[USERNAME]/GHL-FR@latest/src/translator.js';
+    script.onload = () => console.log('✅ GHL-FR chargé avec succès');
+    script.onerror = () => console.warn('❌ Erreur de chargement GHL-FR');
+    document.head.appendChild(script);
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadGHL_FR);
+} else {
+    loadGHL_FR();
+}
+&lt;/script&gt;</pre>
+    </div>
+
+    <h2>🎯 Fonctionnalités disponibles</h2>
+    <ul>
+        <li><strong>Traduction automatique</strong> - Se déclenche dès le chargement</li>
+        <li><strong>Filtrage par compte</strong> - Seulement sur les comptes autorisés</li>
+        <li><strong>API globale</strong> - Accessible via <code>window.GHL_FR</code></li>
+    </ul>
+
+    <h3>API disponible</h3>
+    <div class="code-block">
+        <pre>// Vérifier la version
+console.log('Version:', window.GHL_FR.version);
+
+// Forcer une traduction manuelle
+window.GHL_FR.translate();
+
+// Ajouter des traductions personnalisées
+window.GHL_FR.addTranslations({
+    "Custom Term": "Terme personnalisé"
+});</pre>
+    </div>
+
+    <h2>🚀 Déploiement</h2>
+    <ol>
+        <li>Push ton repo sur GitHub</li>
+        <li>Créer un tag de version : <code>git tag v1.0.0 && git push origin v1.0.0</code></li>
+        <li>jsDelivr sera disponible automatiquement !</li>
+    </ol>
+
+    <div class="version-info">
+        <strong>⚡ Cache jsDelivr :</strong> Les fichiers sont mis en cache. Utilisez <code>@latest</code> pour les dernières modifications ou <code>@v1.0.0</code> pour une version fixe.
+    </div>
+
+    <h2>🔗 URLs jsDelivr</h2>
+    <ul>
+        <li><strong>Version complète :</strong> <code>https://cdn.jsdelivr.net/gh/[USERNAME]/GHL-FR@latest/src/translator.js</code></li>
+        <li><strong>Version spécifique :</strong> <code>https://cdn.jsdelivr.net/gh/[USERNAME]/GHL-FR@v1.0.0/src/translator.js</code></li>
+    </ul>
+
+</body>
+</html> 
