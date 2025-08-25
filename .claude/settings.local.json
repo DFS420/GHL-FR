@@ -3,7 +3,15 @@
     "allow": [
       "Bash(git add:*)",
       "Bash(git config:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "WebFetch(domain:docs.browsermcp.io)",
+      "WebSearch",
+      "mcp__browsermcp__browser_navigate",
+      "mcp__browsermcp__browser_snapshot",
+      "mcp__browsermcp__browser_get_console_logs",
+      "mcp__browsermcp__browser_press_key"
     ],
     "defaultMode": "acceptEdits"
   }
