@@ -7,6 +7,7 @@
   };
   
   let isTranslating = false;
+  let observer;
   
   // Function to translate text content
   function translateText(text) {
@@ -23,6 +24,9 @@
     isTranslating = true;
     
     console.log('🔄 Running translation...');
+    
+    // Temporarily disconnect observer to prevent infinite loop
+    if (observer) observer.disconnect();
     
     const walker = document.createTreeWalker(
       document.body || document,
@@ -51,6 +55,17 @@
     });
     
     console.log(`🎯 Translation complete: ${translatedCount} texts translated`);
+    
+    // Reconnect observer after translation is complete
+    setTimeout(() => {
+      if (observer && document.body) {
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      }
+    }, 100);
+    
     isTranslating = false;
   }
   
@@ -62,7 +77,7 @@
   }
   
   // Set up MutationObserver to watch for dynamic content
-  const observer = new MutationObserver((mutations) => {
+  observer = new MutationObserver((mutations) => {
     let shouldTranslate = false;
     mutations.forEach(mutation => {
       if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
