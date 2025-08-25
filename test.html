@@ -16,5 +16,14 @@
     
     <!-- Load our translator script -->
     <script src="src/translator.js"></script>
+    
+    <script>
+        // Test after page loads
+        setTimeout(() => {
+            console.log('Testing translation...');
+            const span = document.querySelector('span');
+            console.log('Span content:', JSON.stringify(span.textContent));
+        }, 100);
+    </script>
 </body>
 </html>

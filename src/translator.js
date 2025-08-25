@@ -10,6 +10,9 @@
   function translateText(text) {
     let translatedText = text;
     for (const [original, translation] of Object.entries(translations)) {
+      // Handle text with surrounding whitespace
+      translatedText = translatedText.replace(new RegExp(`\\s*${original}\\s*`, 'g'), ` ${translation} `);
+      // Handle exact matches
       translatedText = translatedText.replace(new RegExp(original, 'g'), translation);
     }
     return translatedText;
@@ -31,9 +34,12 @@
     }
     
     textNodes.forEach(textNode => {
-      const originalText = textNode.textContent.trim();
-      if (originalText && translations[originalText]) {
-        textNode.textContent = translateText(originalText);
+      const originalText = textNode.textContent;
+      if (originalText) {
+        const newText = translateText(originalText);
+        if (newText !== originalText) {
+          textNode.textContent = newText;
+        }
       }
     });
   }
